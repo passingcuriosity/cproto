@@ -2,7 +2,7 @@
 .SUFFIXES: 
 .SUFFIXES: .c .o .h
 
-.PHONY: all clean
+.PHONY: all clean run
 
 SRC_DIR := src
 OBJ_DIR := obj
@@ -16,6 +16,9 @@ SRC := $(wildcard $(SRC_DIR)/*.c)
 OBJ := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 
 all: $(EXE)
+
+run: $(EXE)
+	./$(EXE)
 
 clean:
 	@$(RM) -rv $(BIN_DIR) $(OBJ_DIR)
