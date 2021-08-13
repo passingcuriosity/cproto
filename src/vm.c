@@ -63,12 +63,14 @@ static void runtimeError(const char* format, ...) {
 }
 
 void initVM() {
-    resetStack();
-    vm.objects = NULL;
+  resetStack();
+  vm.objects = NULL;
+  initTable(&vm.strings);
 }
 
 void freeVM() {
-    freeObjects();
+  freeTable(&vm.strings);
+  freeObjects();
 }
 
 InterpretResult interpret(const char* source) {
