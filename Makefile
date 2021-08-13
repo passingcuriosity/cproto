@@ -1,0 +1,30 @@
+
+.SUFFIXES: 
+.SUFFIXES: .c .o .h
+
+.PHONY: all clean
+
+SRC_DIR := src
+OBJ_DIR := obj
+BIN_DIR := bin
+
+CFLAGS := -std=c17 -Wall
+
+EXE := $(BIN_DIR)/proto
+
+SRC := $(wildcard $(SRC_DIR)/*.c)
+OBJ := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
+
+all: $(EXE)
+
+clean:
+	@$(RM) -rv $(BIN_DIR) $(OBJ_DIR)
+
+$(EXE): $(OBJ) | $(BIN_DIR)
+	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BIN_DIR) $(OBJ_DIR):
+	mkdir -p $@
