@@ -16,5 +16,4 @@ jobs:
     - name: make
       run: make
     - name: test
-      run: |
-        find examples -type f | xargs -t -n 1 ./bin/proto
+      run: make test

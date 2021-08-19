@@ -2,7 +2,7 @@
 .SUFFIXES: 
 .SUFFIXES: .c .o .h
 
-.PHONY: all clean run
+.PHONY: all clean run test
 
 SRC_DIR := src
 OBJ_DIR := obj
@@ -22,6 +22,9 @@ run: $(EXE)
 
 clean:
 	@$(RM) -rv $(BIN_DIR) $(OBJ_DIR)
+
+test: $(EXE)
+	find examples -type f | xargs -t -n 1 ./bin/proto
 
 $(EXE): $(OBJ) | $(BIN_DIR)
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
