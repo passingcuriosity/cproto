@@ -1,3 +1,5 @@
+debugging(true);
+
 {
     var a = "hello";
     {

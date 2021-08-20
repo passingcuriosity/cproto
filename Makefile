@@ -8,7 +8,7 @@ SRC_DIR := src
 OBJ_DIR := obj
 BIN_DIR := bin
 
-CFLAGS := -std=c17 -Wall
+CFLAGS := -std=c17 -Wall -g
 
 EXE := $(BIN_DIR)/proto
 
@@ -24,7 +24,7 @@ clean:
 	@$(RM) -rv $(BIN_DIR) $(OBJ_DIR)
 
 test: $(EXE)
-	find examples -type f | xargs -t -n 1 ./bin/proto
+	find examples/good -type f | xargs -t -n 1 ./bin/proto
 
 $(EXE): $(OBJ) | $(BIN_DIR)
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
